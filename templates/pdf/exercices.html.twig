@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+		<title>Liste des exercices</title>
+		<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+	</head>
+	<body>
+		<img src="{{ asset('img/banner-bg.jpg') }}" alt="Logo" class="logo">
+		<h1 class="title" align="center">
+			<span style="text-decoration: underline;">Liste exercices</span>
+		</h1>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th class="gras">Id exercice</th>
+					<th class="gras">Nom exercice</th>
+					<th class="gras">Image exercice</th>
+					<th class="gras">Duration</th>
+					<th class="gras">Instruction</th>
+					<th class="gras">Repetition</th>
+					<th class="gras">Equipement</th>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in exercices %}
+					<tr>
+						<td>{{i.id}}</td>
+						<td>{{i.nomExercice}}</td>
+
+						<td>
+							<img src="{{ asset('uploads/exercices/' ~ i.imageExercice) }}" height="100px" width="100px"/>
+
+						</td>
+						<td>{{i.duration}}</td>
+						<td>{{i.instruction}}</td>
+						<td>{{i.repetation}}</td>
+						<td>{{i.equipement.nomEquipement}}
+						</td>
+
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

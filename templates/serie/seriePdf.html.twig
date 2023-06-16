@@ -1,0 +1,23 @@
+<table border="1">
+	<thead>
+		<tr>
+			<th>Id série</th>
+			<th>Titre série</th>
+
+			<th>Exercices</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for serie in series %}
+			<tr>
+				<td>{{ serie.id }}</td>
+				<td>{{ serie.titreSerie }}</td>
+				{% for exercice in serie.exercices %}
+					<td>
+						{{ exercice.nomExercice }}<br>
+					</td>
+				{% endfor %}
+			</tr>
+		</td>
+	</tbody>
+</tr>{% endfor %}</tbody></table>

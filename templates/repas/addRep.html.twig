@@ -1,0 +1,72 @@
+{% extends 'base_back.html.twig' %}
+
+
+{% block body %}
+    <style>
+    h1{
+        margin-left: 20%;
+        color:white;
+
+    }
+    form{
+        margin-left: 20%;
+        color:white;
+    }
+    h3{
+        margin-left: 20%;
+        color:white;
+    }
+    ul{
+        margin-left: 20%
+        color:white;
+    }
+    dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    margin-left: 18%;
+    color:white;
+}
+    
+
+</style>
+<h1>Ajouter un Repas</h1>
+{{ form_start(form, {'attr': {'novalidate':'novalidate'}} ) }}
+<table>
+<tr>
+<td> {{ form_label(form.name) }}</td>
+<td>{{ form_widget(form.name) }}</td>
+<td>{{ form_errors(form.name) }}</td>
+</tr>
+<tr>
+<td> {{ form_label(form.heure) }}</td>
+<td>{{ form_widget(form.heure) }}</td>
+<td>{{ form_errors(form.heure) }}</td>
+</tr>
+<tr>
+<td> {{ form_label(form.description) }}</td>
+<td>{{ form_widget(form.description) }}</td>
+<td>{{ form_errors(form.description) }}</td>
+</tr>
+<tr>
+<td> {{ form_label(form.image) }}</td>
+<td>{{ form_widget(form.image) }}</td>
+<td>{{ form_errors(form.image) }}</td>
+</tr>
+<tr>
+<td> {{ form_label(form.calories) }}</td>
+<td>{{ form_widget(form.calories) }}</td>
+<td>{{ form_errors(form.calories) }}</td>
+</tr>
+</table>
+{{ form_end(form) }}
+
+<h3>Ingredients Already in Database</h3>
+<ol>
+    {% for ingredient in ingredients %}
+        <li>{{ ingredient.name }}</li>
+    {% endfor %}
+</ol>
+
+
+
+{% endblock %}

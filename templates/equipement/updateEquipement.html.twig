@@ -1,0 +1,85 @@
+{% extends 'back.html.twig' %}
+{% block title %}Modifier un equipement
+{% endblock %}
+{% block body %}
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+			<div class="x_panel">
+
+				<div class="x_content">
+
+					{{ form_start(f, {'attr': {'novalidate': 'novalidate'}}) }}
+					<br>
+
+					<div class="col-md-12 offset-md-3">
+
+						<div class="form-group input-group col-md-6 col-sm-6">
+							<label>{{ form_label(f.nomEquipement,"nom") }}</label>
+
+						</div>
+					</div>
+					<div class="col-md-12 offset-md-3">
+
+						<div class="form-group input-group col-md-6 col-sm-6">
+
+							{{form_widget(f.nomEquipement,{'attr':{'class':'form-control'}})}}
+
+
+						</div>
+
+					</div>
+					<div class="col-md-12 offset-md-3">
+
+						<div class="form-group input-group col-md-6 col-sm-6">
+
+							<span style="color: red;">{{ form_errors(f.nomEquipement )}}</span>
+
+
+						</div>
+
+					</div>
+
+					<br>
+					<br>
+					<div class="col-md-12 offset-md-3">
+
+						<div class="form-group input-group col-md-6 col-sm-6">
+							<label>Image Equipement</label>
+
+						</div>
+					</div>
+					<div class="col-md-12 offset-md-3">
+						<div class="input-group col-md-6 col-sm-6">
+							<div class="custom-file">
+								{{ form_widget(f.image, {'attr': {'class': 'custom-file-input', 'id': 'id="customFile"'}, 'label': 'Choisir une image'}) }}
+								<label class="custom-file-label" for="inputGroupFile01">choisir une image</label>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="col-md-12 offset-md-3">
+						<div class="form-group input-group col-md-6 col-sm-6">
+							<span style="color: red;">{{ form_errors(f.image) }}</span>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="col-md-12 offset-md-3">
+
+					<div class="form-group input-group col-md-6 col-sm-6">
+
+						{{form_widget(f.ajouter_equipement,{'attr':{'class':'btn btn-primary'}})}}
+						<button type="button" class="btn btn-light">
+							<a href="{{path('listEquipement') }}">Retour</a>
+						</button>
+					</div>
+				</div>
+
+				{{form_end(f)}}
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

@@ -1,0 +1,89 @@
+
+{% extends 'base_back.html.twig' %}
+{% block title %}Liste des Repas{% endblock %}
+
+{% block body %}
+
+    <style>
+        h1 {
+            font-size: 3rem;
+            margin-left: 18%;
+            color: white;
+        }
+        p{
+         margin-top: 0;
+         margin-bottom: 1rem;
+         margin-left: 18%;
+        }
+         
+        table {
+        border-collapse: collapse;
+        margin: auto;
+        width: 50%;
+        margin-left: 14rem;
+        color: #ffff;
+        }
+
+        table td, table th {
+        padding: 0.75rem;
+        vertical-align: top;
+        border: 2px solid #dee2e6;
+        text-align: center;
+        color: #ffff;
+        }
+        button, input {
+            overflow: visible;
+            margin-left: 16rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+    </style>
+    <h1>Liste des Repas</h1>
+    {% if repas is empty %}
+        <p>No Repas found.</p>
+    {% else %}    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Heure</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Calories</th>
+                    <th>Ingrédients</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in repas %}
+                    <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.name }}</td>
+                        <td>{{ i.heure | date('H:i:s') }}</td>
+                        <td>{{ i.description }}</td>
+                        <td><img src="{{ asset('uploads/repas' ~ i.image()) }}" width="400"></td>
+                        <td>{{ i.calories }}</td>
+                        <td>
+                            <ul>
+                            {% for ingredient in i.Ingredients %}
+                                {{ ingredient.name }} ({{ ingredient.quantite }})
+                            {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="{{ path('repas_edit', {'id': i.id}) }}" class="btn btn-primary">Modifier</a>
+                            <a href="{{path('repas_delete',{'id':i.id}) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+    <a href="addRepas"><button type="submit" class="btn btn-primary">Ajouter des Repas</button></a>
+{% endblock %}
+

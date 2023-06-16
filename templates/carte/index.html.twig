@@ -1,0 +1,92 @@
+{% extends 'home/index1.html.twig' %}
+
+{% block title %}panier{% endblock %}
+
+
+{% block body %}
+    <style>
+        .button {
+            background-color: #990F1D;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .button2 {background-color: #008CBA;}
+        .button3 {background-color: #f44336;}
+        .button4 {background-color: #e7e7e7; color: black;}
+        .button5 {background-color: #555555;}
+    </style>
+    <div class="bg-light p-3">
+        <h1 style="color: #f36100">Votre panier</h1>
+
+    </div>
+    <table class="table bg-white">
+        <thead>
+        <tr class="thead-dark">
+        <th scope="col">#</th>
+            <th scope="col">Produit</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Totale</th>
+            <th scope="col">actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in dataPanier %}
+        <tr>
+          <th scope="row">
+
+
+               
+                 {{ loop.index}}
+
+                        </th>
+            <td> {{ element.produit.nom() }}</td>
+            <td>{{ element.produit.prix }}$</td>
+            <td style="color:grey">{{ element.quantite }}</td>
+            <td>{{ element.produit.prix * element.quantite }}</td>
+            <td>
+            <a href="{{ path("cart_add",{id:element.produit.getId}) }}"><button type="button" class="btn btn-outline-success" > Add </button> </a>
+            <a href="{{ path("cart_remove",{id:element.produit.getId}) }}">    <button type="button" class="btn btn-outline-danger" > remove</button></a>
+               <a href="{{ path("delete_all",{id:element.produit.getId}) }}"> <button type="button" class="btn btn-outline-danger" > remove all</button></a>
+
+
+
+            </td>
+        </tr>
+        {% else%}
+            <p>panier vide !</p>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+           
+             <th scope="col">=</th>
+            <th scope="col">Total</th>
+
+             <td>{{ total }}</td>
+            <td>
+            <button type="button" class="btn btn-outline-danger" ><a href="{{ path("delete_all")}}"> remove all</a></button>
+            </td>
+        </tr>
+                 
+              
+           
+
+            {# <td>
+                <button class="btn" ><a href="{{ path("ajout")}}"> valider</a></button>
+            </td>
+            <td>
+                <button class="btn" ><a href="{{ path("list")}}"> Continuer mes achats</a></button>
+            </td> #}
+
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

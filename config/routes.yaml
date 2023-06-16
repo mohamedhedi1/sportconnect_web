@@ -1,0 +1,7 @@
+list_exercicef:
+    path: /listExercicef
+    controller: App\Controller\ExerciceController::listExerciceFront
+show_ingredient:
+    path: /showingredient
+    controller: App\Controller\IngredientController::showIng
+    methods: GET

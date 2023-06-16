@@ -1,0 +1,22 @@
+<div class="alert alert-primary" role="alert">
+  Message d'alerte principal
+</div>
+<div class="alert alert-success" role="alert">
+  Message de succès
+</div>
+<div class="alert alert-danger" role="alert">
+  Message d'erreur
+</div>
+<div class="alert alert-warning" role="alert">
+  Message d'avertissement
+</div>
+<!-- ...  et bien d'autres -->
+
+
+
+{# /templates/macros/alertes.html.twig #}
+{% macro alert(message, type) %}
+<div class="alert alert-{{ type }}" role="alert">
+  {{ message }}
+</div>
+{% endmacro%}

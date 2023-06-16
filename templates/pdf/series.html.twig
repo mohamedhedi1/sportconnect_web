@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+		<title>Liste des utilisateurs</title>
+		<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+	</head>
+	<body>
+		<img src="{{ asset('img/banner-bg.jpg') }}" alt="Logo" class="logo">
+		<h1 class="title" align="center">
+			<span style="text-decoration: underline;">Liste series</span>
+		</h1>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th class="gras">Id série</th>
+					<th class="gras">Titre série</th>
+					<th class="gras">Image serie</th>
+					<th class="gras">Exercices</th>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in series %}
+					<tr>
+						<td class=>{{i.id}}</td>
+						<td class=>{{i.titreSerie}}</td>
+						<td>
+							<img src="{{ asset('uploads/series/' ~ i.imageSerie) }}" height="100px" width="100px"/></td>
+
+						{% for exercice in i.exercices %}
+							<td>
+								{{ exercice.nomExercice }}<br>
+							</td>
+						{% endfor %}
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

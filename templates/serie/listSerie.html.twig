@@ -1,0 +1,113 @@
+{% extends 'back.html.twig' %}
+{% block title %}La liste des series
+	<button type="button" class="btn btn-info">
+		<a href="{{path('pdf_series') }}">Pdf</a>
+	</button>
+{% endblock %}
+{% block body %}
+<div class="col-md-12 col-sm-12  ">
+	<div class="x_panel">
+		<div class="x_title">
+
+
+			<div class="table-responsive">
+				<table class="table table-striped jambo_table bulk_action">
+					<thead>
+						<tr class="headings">
+							<th>
+								<div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" id="check-all" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px none; opacity: 0;"></ins>
+								</div>
+							</th>
+							<th class="column-title" style="display: table-cell;">Id serie
+							</th>
+							<th class="column-title" style="display: table-cell;">Titre serie
+							</th>
+							<th class="column-title" style="display: table-cell;">Image serie
+							</th>
+							<th class="column-title" style="display: table-cell;">Exercices
+							</th>
+							<th class="column-title" style="display: table-cell;">Action
+							</th>
+
+
+							<th class="bulk-actions" colspan="7" style="display: none;">
+								<a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions (
+									<span class="action-cnt">1 Records Selected</span>
+									)
+									<i class="fa fa-chevron-down"></i>
+								</a>
+							</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for i in series %}
+							<tr class="even pointer">
+								<td class="a-center ">
+									<div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px none; opacity: 0;"></ins>
+									</div>
+								</td>
+								<td class=" ">{{i.id}}</td>
+								<td class=" ">{{i.titreSerie}}
+								</td>
+								<td class=" "><img class="img-thumbnail" src={{ asset('uploads/series/' ~ i.imageSerie) }} height="100px" width="100px"/>
+								</td>
+								<td class=" ">
+									{% for exercice in i.exercices %}
+
+										<a data-toggle="modal" data-target={{ ('#id' ~ exercice.id) }}>
+											🟣{{ exercice.nomExercice }}
+										</a>
+										<br>
+										<div class="modal fade" id={{ ('id' ~ exercice.id) }} tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLongTitle">Nom:
+															{{exercice.nomExercice}}</h5>
+
+
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<h5 class="modal-title" id="exampleModalLongTitle">Instruction:{{exercice.instruction}}</h5>
+
+														<h5 class="modal-title" id="exampleModalLongTitle">Duration :{{exercice.duration}}</h5>
+
+														<h5 class="modal-title" id="exampleModalLongTitle">Repetition :{{exercice.repetation}}</h5>
+														<img class="img-thumbnail" src={{ asset('uploads/exercices/' ~ exercice.imageExercice) }} height="450px" width="450px"/>
+
+
+													</div>
+
+												</div>
+											</div>
+										</div>
+									{% endfor %}
+
+								</td>
+
+								<td class=" last">
+
+
+									<button type="button" class="btn btn-info">
+										<a href="{{path('updateSerie',{'id':i.id}) }}">Modifier</a>
+									</button>
+									<button type="button" class="btn btn-danger">
+										<a href="{{path('deleteSerie',{'id':i.id}) }}">Supprimer</a>
+									</button>
+
+
+								</td>
+							</tr>
+						</td>
+					</tbody>
+				</tr>
+			</form>
+		</tbody>
+	</td>
+
+
+</tr>{% endfor %}</tbody></table><div class="pagination-links">{{ knp_pagination_render(series) }}</div></div></div></div></div>{% endblock %}

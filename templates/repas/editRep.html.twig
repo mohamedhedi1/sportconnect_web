@@ -1,0 +1,26 @@
+{% extends 'base_back.html.twig' %}
+{% block body %}
+<style>
+form {
+    display: block;
+    margin-left: 20%;
+    color:white;
+}
+h1{
+    color:white;
+    margin-left: 20%;
+}
+a {
+    color: lightblue;
+    margin-left: 20%;
+}
+input{
+    margin: 1rem;
+}
+</style>
+    <h1>Edit Repas</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

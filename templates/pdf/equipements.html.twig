@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+
+		<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+	</head>
+	<body>
+		<img src="{{ asset('img/banner-bg.jpg') }}" alt="Logo" class="logo">
+		<h1 class="title" align="center">
+			<span style="text-decoration: underline;">Liste equipements</span>
+		</h1>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th class="gras">Id equipement</th>
+					<th class="gras">Nom equipement</th>
+					<th class="gras">Image equipement</th>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in equipements %}
+					<tr>
+						<td>{{i.id}}</td>
+						<td>{{i.nomEquipement}}</td>
+
+						<td>
+							<img src="{{ asset('uploads/equipements/' ~ i.imageEquipement) }}" height="100px" width="100px"/>
+						</td>
+
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

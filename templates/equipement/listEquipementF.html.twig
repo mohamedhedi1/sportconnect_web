@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block debut %}
+
+	<section class="banner-section set-bg" data-setbg="img/banner-bg.jpg" height="100" width="200">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="bs-text">
+						<h2>Nos Equipements</h2>
+						<div class="bt-tips"></div>
+						<a href="#" class="primary-btn  btn-normal"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="classes-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12"></div>
+
+				{% for i in equipements %}
+					<div class="col-lg-6 col-md-6">
+						<div class="class-item">
+							<div class="ci-pic">
+								<img src={{ asset('uploads/equipements/' ~ i.imageEquipement) }} height="300px" width="100px"/>
+							</div>
+							<div class="ci-text">
+
+								<h4>{{i.nomEquipement}}</h4>
+
+								<i class="fa fa-angle-right"></i>
+
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+
+			</section>
+		{% endblock %}

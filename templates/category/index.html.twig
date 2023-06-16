@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+
+
+{% block content %}
+
+
+          <li >
+            <a href="{{ path('app_dashboard') }}">
+              <i class="nc-icon nc-bank"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+
+
+
+          <li>
+              <a href="{{ path('app_product_index') }}">
+       <i class="fa fa-clone"></i>
+              <p>produit</p>
+            </a>
+          </li> 
+        <li class="active">
+            <a href="{{ path('app_category_index') }}">
+                   <i class="nc-icon nc-tile-56"></i>
+              <p>Categorie</p>
+            </a>
+          </li> 
+
+          
+{% endblock  %}
+
+
+   
+
+
+{% block body %}
+
+   <style>
+.box {
+  display: grid;
+  width: 170px;
+  grid-template-columns: 30px 30px 30px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+div.box{
+    height: 45px;
+    overflow: auto;
+    border: 0px solid #f8f9fa;
+    background-color: #f8f9fa;
+
+
+}
+
+.box :first-child {
+    align-self: center;
+}
+</style>
+
+
+    <h1>Liste des  Categories </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+               
+                <th>Nom</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+              
+                <td>{{ category.nom }}</td>
+                <td>{{ category.description }}</td>
+                
+                <td>
+<div class="box">
+               <div>     <a href="{{ path('app_category_show', {'id': category.id}) }}"><i class="fas fa-2x fa-eye"></i></a></div>
+                 <div>   <a href="{{ path('app_category_edit', {'id': category.id}) }}"><i class="fas fa-2x fa-edit"></i></a></div>
+                  <div>  {{ include('category/_delete_form.html.twig') }}  </div> 
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">category not  found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_category_new') }}"><i class="fas fa-3x fa-plus-circle"></i></a>
+
+
+{% endblock %}

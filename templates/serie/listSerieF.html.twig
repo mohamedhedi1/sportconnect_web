@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block debut %}
+
+	<section class="banner-section set-bg" data-setbg="img/banner-bg.jpg" height="100" width="200">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="bs-text">
+						<h2>Nos Series</h2>
+						<div class="bt-tips"></div>
+						<a href="#" class="primary-btn  btn-normal"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="classes-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12"></div>
+
+				{% for i in series %}
+					<div class="col-lg-6 col-md-6">
+						<div class="class-item">
+							<div class="ci-pic">
+								<img src={{ asset('uploads/series/' ~ i.imageSerie) }} height="300px" width="100px"/>
+							</div>
+
+							<div class="ci-text">
+
+								<h4>{{i.titreSerie}}
+
+									<form method="post" action="{{ path('contact_submit') }}">
+										<input type="hidden" type="text" id="name" name="name" value="1">
+										<input type="hidden" type="text" id="idSerie" name="idSerie" value="{{i.id}}">
+										<button type="submit">👍</button>
+									</form>
+									<form method="post" action="{{ path('contact_submit') }}">
+										<input type="hidden" type="text" id="name" name="name" value="-1">
+										<input type="hidden" type="text" id="idSerie" name="idSerie" value="{{i.id}}">
+										<button type="submit">👎</button>
+									</form>
+								</h4>
+
+								<a href="{{path('serie',{'id':i.id}) }}">
+									<i class="fa fa-angle-right"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+
+			</section>
+		{% endblock %}

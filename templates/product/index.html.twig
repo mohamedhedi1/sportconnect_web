@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+
+
+
+
+
+{% block content %}
+
+
+          <li >
+            <a href="{{ path('app_dashboard') }}">
+              <i class="nc-icon nc-bank"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+
+
+
+          <li class="active">
+              <a href="{{ path('app_product_index') }}">
+          <i class="fa fa-clone"></i>
+              <p>Produit</p>
+            </a>
+          </li> 
+        <li>
+            <a href="{{ path('app_category_index') }}">
+                   <i class="nc-icon nc-tile-56"></i>
+              <p>Categorie</p>
+            </a>
+          </li> 
+
+
+
+
+
+
+          
+{% endblock  %}
+
+
+{% block body %}
+
+ <style>
+.box {
+  display: grid;
+  width: 170px;
+  grid-template-columns: 30px 30px 30px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+div.box{
+    height: 45px;
+    overflow: auto;
+    border: 0px solid #f8f9fa;
+    background-color: #f8f9fa;
+
+
+}
+
+.box :first-child {
+    align-self: center;
+}
+</style>
+
+
+    <h1>Liste des Produits</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+             
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Quantité</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                
+                <td>{{ product.nom }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.prix }}</td>                
+                <td> <img style="width: 100px" src="{{ asset('uploads/' ~ product.image) }}"> </td>
+                <td>{{ product.category.nom}} </td>
+                <td>{{ product.quantity }}</td>
+                <td>
+               <div class="box">
+                   <div >  <a href="{{ path('app_product_show', {'id': product.id}) }}"><i class="fas fa-2x fa-eye"> </i></a></div>
+                 <div >   <a href="{{ path('app_product_edit', {'id': product.id}) }}"><i class="fas fa-2x fa-edit"> </i></a></div>
+                    <div >    {{ include('product/_delete_form.html.twig') }} </div>
+               </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+  
+    <a href="{{ path('app_product_new') }}"><i class="fas fa-3x fa-plus-circle"></i></a>
+{% endblock %}
